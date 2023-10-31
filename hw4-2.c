@@ -1,45 +1,46 @@
 #include <stdio.h>
-#include <stdlib.h>
-int Prime(int num)
-{
-   if (num <= 1)
-    {
-        return 0;
-    }
 
-   for (int i = 2; i * i <= num; i++)
-   {
-       if (num % i == 0)
-       {
-           return 0;
-       }
-   }
-   return 1;
-}
+int accounts[][3] =
+{
+
+    {123, 456, 9000},
+
+    {456, 789, 5000},
+    {789, 888, 6000},
+    {336, 558, 10000},
+    {775, 666, 12000},
+    {566, 221, 7000}
+};
 
 int main()
 {
-int n;
-scanf("%d", &n);
-if (n < 1 || n > 50)
-    {
-        return 1;
-    }
+int N;
+scanf("%d", &N);
 
-int number[n];
-for (int i = 0; i < n; i++)
+for (int i = 0; i < N; i++)
     {
-        scanf("%d", &number[i]);
-    }
-for (int i = 0; i < n; i++)
+        int accountNumber, password;
+scanf("%d %d", &accountNumber, &password);
+int found = 0;
+int balance = 0;
+for (int j = 0; j < 6; j++)
     {
-        if (Prime(number[i]))
+        if (accounts[j][0] == accountNumber && accounts[j][1] == password)
         {
-            printf("YES ");
+            found = 1;
+            balance = accounts[j][2];
+
+            break;
         }
-else
-    {
-        printf("NO ");
+    }
+    if (found)
+        {
+            printf("%d\n", balance);
+        }
+        else
+        {
+            printf("error\n");
+        }
     }
 }
-}
+
